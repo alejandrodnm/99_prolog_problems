@@ -23,8 +23,18 @@ my_last_but_one(X, [_|T]) :- my_last_but_one(X, T).
 element_at(X, [X|_], 0).
 element_at(X, [_|T], N) :- N > 0, I is N - 1, element_at(X, T, I).
 
+
 % P04 (*) Find the number of elements of a list.
 
 my_length_acc([], L, L).
 my_length_acc([_|T], L, ACC) :- ACC_AUX is ACC + 1, my_length_acc(T, L, ACC_AUX).
 my_length(X, L) :- my_length_acc(X, L, 0).
+
+
+% P05 (*) Reverse a list.
+
+reverse([], []).
+reverse([H|T], X) :- reverse(T, L), my_append(L, [H], X).
+
+my_append([], L, L).
+my_append([H|T], Y, [H|L]) :- my_append(T, Y, L).
