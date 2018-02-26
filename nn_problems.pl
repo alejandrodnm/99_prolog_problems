@@ -33,8 +33,22 @@ my_length(X, L) :- my_length_acc(X, L, 0).
 
 % P05 (*) Reverse a list.
 
-reverse([], []).
-reverse([H|T], X) :- reverse(T, L), my_append(L, [H], X).
+reverse_recursive([], []).
+reverse_recursive([H|T], X) :- reverse_recursive(T, L), my_append(L, [H], X).
 
 my_append([], L, L).
 my_append([H|T], Y, [H|L]) :- my_append(T, Y, L).
+
+reverse_acc([], L2, L2).
+reverse_acc([H|T], RL, ACC_L) :- reverse_acc(T, RL, [H|ACC_L]).
+reverse(L, RL) :- reverse_acc(L, RL, []).
+
+
+% P06 (*) Find out whether a list is a palindrome.
+
+palindrome_aux([], []).
+palindrome_aux([H|T1], [H|T2]) :- palindrome_aux(T1, T2).
+palindrome(X) :- reverse(X, RX), palindrome_aux(X, RX).
+
+% SHAME this is a proper solution
+palindrome(L) :- reverse(L, L)
