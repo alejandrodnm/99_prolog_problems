@@ -4,6 +4,8 @@
 %     Example:
 %     ?- encode([a,a,a,a,b,c,c,a,a,d,e,e,e,e],X).
 %     X = [[4,a],[1,b],[2,c],[2,a],[1,d][4,e]]
+:- [p09].
+
 encode_misunderstood([],[]).
 encode_misunderstood([X|Xs],[[I, X]|Zs]) :- transfer(X,Xs,Ys,Z), length(Z, I), encode(Ys,Zs).
 
