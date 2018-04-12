@@ -7,7 +7,7 @@
 :- [p09].
 
 encode_misunderstood([],[]).
-encode_misunderstood([X|Xs],[[I, X]|Zs]) :- transfer(X,Xs,Ys,Z), length(Z, I), encode(Ys,Zs).
+encode_misunderstood([X|Xs],[[I, X]|Zs]) :- transfer(X,Xs,Ys,Z), length(Z, I), encode_misunderstood(Ys,Zs).
 
 encode(L1, L2) :- pack(L1, PackList), encode_aux(PackList, L2).
 encode_aux([], []).
